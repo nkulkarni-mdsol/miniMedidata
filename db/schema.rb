@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_05_171538) do
-
-  create_table "addresses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "address"
-    t.bigint "Patient_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["Patient_id"], name: "index_addresses_on_Patient_id"
-  end
+ActiveRecord::Schema.define(version: 2021_05_06_112857) do
 
   create_table "patients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -36,11 +28,11 @@ ActiveRecord::Schema.define(version: 2021_05_05_171538) do
   end
 
   create_table "studies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", default: ""
+    t.string "name"
     t.integer "age_limit"
     t.string "drug"
-    t.integer "phase", default: 0
     t.string "symptoms"
+    t.integer "phase"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "study_group_id"
@@ -48,11 +40,9 @@ ActiveRecord::Schema.define(version: 2021_05_05_171538) do
 
   create_table "study_groups", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
-    t.integer "age"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "addresses", "Patients"
   add_foreign_key "sites", "Studies"
 end
